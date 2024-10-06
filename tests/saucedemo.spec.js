@@ -44,8 +44,8 @@ test('Test Case 0: Login', async () => {
     await page.waitForTimeout(3000);
     // expect(page).toHaveScreenshot('login-page.png'); // Login Page Visual Testing
     // await page.waitForTimeout(6000);
-    await page.click('#login-button');
-    // await page.click('#login-button123');
+    // await page.click('#login-button');
+    await page.click('#login-button123');
     await page.waitForTimeout(3000);
     
     // Verify login success...
