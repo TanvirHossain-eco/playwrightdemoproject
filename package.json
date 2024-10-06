@@ -1,0 +1,17 @@
+{
+  "name": "my-playwright-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.39.0",
+    "ai-visual-tester": "^1.0.2",
+    "playwright": "^1.39.0"
+  }
+}
