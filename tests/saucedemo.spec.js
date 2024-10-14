@@ -1,12 +1,19 @@
 const { chromium } = require('playwright');
 const { test, expect } = require('@playwright/test');
-test.describe.configure({ mode: 'parallel' });
+// test.describe.configure({ mode: 'parallel' });
 let browser;
 let page;
 
 test.beforeAll(async () => {
-    browser = await chromium.launch();
-    const context = await browser.newContext();
+    browser = await chromium.launch({
+        headless: false,
+        slowMo: 1000
+    });
+    const context = await browser.newContext({
+        recordVideo: {
+            dir: './videos',
+        }
+    });
     page = await context.newPage();
     await page.goto('https://www.saucedemo.com/');
     // await loginpage(page);

@@ -88,3 +88,37 @@ test('Assertions Demo 5', async () => {
     // await expect(await page.locator('text=The Kitchen')).toHaveClass('the-kitchen');
     // await expect(await page.locator('text=The Kitchen')).not.toHaveClass('the-kitchen');
 });
+// Check have URL
+test('Assertions Demo 6', async () => {
+    const url = await page.url();
+    if (url === 'https://kitchen.applitools.com/') {
+        console.log('URL matches');
+        await expect(await page).toHaveURL('https://kitchen.applitools.com/');
+        await page.locator('text=The Kitchen').click();
+    }else {
+        console.log('URL does not match');
+        await expect(await page).not.toHaveURL('https://kitchen.applitools.com/');
+    }
+    // await expect(await page).toHaveURL('https://kitchen.applitools.com/');
+    // await expect(await page).not.toHaveURL('https://kitchen.applitools.com/');
+});
+// Check have Title
+test('Assertions Demo 7', async () => {
+    const title = await page.title();
+    if (title === 'The Kitchen') {
+        console.log('Title matches');
+        await expect(await page).toHaveTitle('The Kitchen');
+        await page.locator('text=The Kitchen').click();
+    }else {
+        console.log('Title does not match');
+        await expect(await page).not.toHaveTitle('The Kitchen');
+    }
+    // await expect(await page).toHaveTitle('The Kitchen');
+    // await expect(await page).not.toHaveTitle('The Kitchen');
+});
+// Check visual validation with screenshot
+test('Assertions Demo 8', async () => {
+    await page.waitForTimeout(3000);
+    await expect (await page).toHaveScreenshot();
+    // await page.locator('text=The Kitchen').click();
+});

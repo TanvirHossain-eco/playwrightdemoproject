@@ -14,7 +14,7 @@ module.exports = defineConfig({
   testDir: './tests',
 
   /* Maximum time one test can run for. */
-  timeout: 60 * 1000,
+  timeout: 30 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -23,7 +23,7 @@ module.exports = defineConfig({
     timeout: 5000
   },
   /* Run tests in files in parallel */
-  fullyParallel: false,
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -38,19 +38,40 @@ module.exports = defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-
+    // Start of Video Config
+    // -----------------------
+    // video: 'off',
+    // video: 'retain-on-failure',
+    // video: 'retry-with-video',
+    // video: 'on-first-retry',
+    video: 'on',
+    
+    // End of Video Config
+    // -----------------------
+    actionTimeout: 0,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    // Start of Trace Config
+    // -----------------------
+    // trace: 'on-first-retry',
     // trace: 'retain-on-failure',
     // trace: 'on',
     // trace: 'off',
+    // End of Trace Config
+    // -----------------------
+    
+    
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        launchOptions: {
+          slowMo: 1000
+        }
+       },
     },
 
     {
